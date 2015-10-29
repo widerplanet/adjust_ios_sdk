@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "5D3A06A058226D065739B53871A0207A1C3022C2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5D3A06A058226D065739B53871A0207A1C3022C2" : 0,
+    "4B732604DB5ACE3698481AF042AF87E80A88651C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "93F0C7EF-B9AF-41CC-ACA9-700B4BAB7B44",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5D3A06A058226D065739B53871A0207A1C3022C2" : "sdk\/",
+    "4B732604DB5ACE3698481AF042AF87E80A88651C" : "..\/.."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Adjust",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Adjust.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:adjust\/xamarin_sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4B732604DB5ACE3698481AF042AF87E80A88651C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:adjust\/ios_sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D3A06A058226D065739B53871A0207A1C3022C2"
+    }
+  ]
+}
