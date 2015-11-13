@@ -34,20 +34,6 @@
     return [self stringByReplacingOccurrencesOfString:@":" withString:@""];
 }
 
-+ (NSString *)adjJoin:(NSString *)first, ... {
-    NSString *iter, *result = first;
-    va_list strings;
-    va_start(strings, first);
-
-    while ((iter = va_arg(strings, NSString*))) {
-        NSString *capitalized = iter.capitalizedString;
-        result = [result stringByAppendingString:capitalized];
-    }
-    
-    va_end(strings);
-    return result;
-}
-
 + (BOOL) adjIsEqual:(NSString *)first toString:(NSString *)second {
     if (first == nil && second == nil) {
         return YES;

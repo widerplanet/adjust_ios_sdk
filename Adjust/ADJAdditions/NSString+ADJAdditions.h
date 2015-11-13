@@ -13,7 +13,6 @@
 - (NSString *)adjUrlEncode;
 - (NSString *)adjRemoveColons;
 
-+ (NSString *)adjJoin:(NSString *)strings, ...;
 + (BOOL) adjIsEqual:(NSString *)first toString:(NSString *)second;
 
 @end
