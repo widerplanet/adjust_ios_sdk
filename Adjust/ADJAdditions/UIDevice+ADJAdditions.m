@@ -27,33 +27,7 @@
 #if ADJUST_NO_IDFA
     return NO;
 #else
-
-    // return [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
-    NSString *className = [NSString adjJoin:@"A", @"S", @"identifier", @"manager", nil];
-    Class class = NSClassFromString(className);
-    if (class == nil) {
-        return NO;
-    }
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
-    NSString *keyManager = [NSString adjJoin:@"shared", @"manager", nil];
-    SEL selManager = NSSelectorFromString(keyManager);
-    if (![class respondsToSelector:selManager]) {
-        return NO;
-    }
-    id manager = [class performSelector:selManager];
-
-    NSString *keyEnabled = [NSString adjJoin:@"is", @"advertising", @"tracking", @"enabled", nil];
-    SEL selEnabled = NSSelectorFromString(keyEnabled);
-    if (![manager respondsToSelector:selEnabled]) {
-        return NO;
-    }
-    BOOL enabled = (BOOL)[manager performSelector:selEnabled];
-    return enabled;
-
-#pragma clang diagnostic pop
+    return [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled];
 #endif
 }
 
@@ -61,40 +35,8 @@
 #if ADJUST_NO_IDFA
     return @"";
 #else
-
-    // return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    NSString *className = [NSString adjJoin:@"A", @"S", @"identifier", @"manager", nil];
-    Class class = NSClassFromString(className);
-    if (class == nil) {
-        return @"";
-    }
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
-    NSString *keyManager = [NSString adjJoin:@"shared", @"manager", nil];
-    SEL selManager = NSSelectorFromString(keyManager);
-    if (![class respondsToSelector:selManager]) {
-        return @"";
-    }
-    id manager = [class performSelector:selManager];
-
-    NSString *keyIdentifier = [NSString adjJoin:@"advertising", @"identifier", nil];
-    SEL selIdentifier = NSSelectorFromString(keyIdentifier);
-    if (![manager respondsToSelector:selIdentifier]) {
-        return @"";
-    }
-    id identifier = [manager performSelector:selIdentifier];
-
-    NSString *keyString = [NSString adjJoin:@"UUID", @"string", nil];
-    SEL selString = NSSelectorFromString(keyString);
-    if (![identifier respondsToSelector:selString]) {
-        return @"";
-    }
-    NSString *string = [identifier performSelector:selString];
-    return string;
-
-#pragma clang diagnostic pop
+    NSUUID *advertisingIdentifier = [[ASIdentifierManager sharedManager]  advertisingIdentifier];
+    return [advertisingIdentifier UUIDString];
 #endif
 }
 
