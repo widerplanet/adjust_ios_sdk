@@ -501,7 +501,6 @@ To obtain the device identifier IDFA, call the function `idfa`:
 
 ```objc
 NSString * idfa = [Adjust idfa];
-});
 ```
 
 [adjust.com]: http://adjust.com
