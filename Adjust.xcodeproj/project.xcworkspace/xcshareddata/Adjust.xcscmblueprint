@@ -4,11 +4,13 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D797235CD034B41EA2F7F98988B14BCE70D19829" : 0,
     "5D3A06A058226D065739B53871A0207A1C3022C2" : 0,
     "F7C6F209B1DCA446C89CD9019B5C206C0685236A" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "39D3F7B5-32C4-4987-9F89-1A4B49A266EA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D797235CD034B41EA2F7F98988B14BCE70D19829" : "..\/..",
     "5D3A06A058226D065739B53871A0207A1C3022C2" : "ios_sdk\/",
     "F7C6F209B1DCA446C89CD9019B5C206C0685236A" : "cordova_sdk\/"
   },
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:adjust\/ios_sdk.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D3A06A058226D065739B53871A0207A1C3022C2"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:adjust\/adobe_air_sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D797235CD034B41EA2F7F98988B14BCE70D19829"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:adjust\/cordova_sdk.git",
