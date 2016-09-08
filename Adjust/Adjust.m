@@ -136,12 +136,11 @@ NSString * const ADJEnvironmentProduction   = @"production";
         [self.logger error:@"Adjust already initialized"];
         return;
     }
-
-    self.activityHandler = [ADJAdjustFactory activityHandlerWithConfig:adjustConfig
-                                        sessionParametersActionsArray:self.sessionParametersActionsArray];
     
     [adjustConfig setSdkPrefix:@"xamarin4.9.0"];
-    self.activityHandler = [ADJAdjustFactory activityHandlerWithConfig:adjustConfig];
+
+    self.activityHandler = [ADJAdjustFactory activityHandlerWithConfig:adjustConfig
+                                         sessionParametersActionsArray:self.sessionParametersActionsArray];
 }
 
 - (void)trackEvent:(ADJEvent *)event {
