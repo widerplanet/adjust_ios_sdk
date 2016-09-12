@@ -359,6 +359,7 @@ static NSString * const kDateFormat             = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
      prefixErrorMessage:(NSString *)prefixErrorMessage
      suffixErrorMessage:(NSString *)suffixErrorMessage
         activityPackage:(ADJActivityPackage *)activityPackage
+     urlSessionDelegate:(id<NSURLSessionDelegate>)urlSessionDelegate
     responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler {
     NSMutableURLRequest *request = [ADJUtil requestForPackage:activityPackage baseUrl:baseUrl queueSize:queueSize];
 
@@ -366,6 +367,7 @@ static NSString * const kDateFormat             = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
       prefixErrorMessage:prefixErrorMessage
       suffixErrorMessage:suffixErrorMessage
          activityPackage:activityPackage
+      urlSessionDelegate:urlSessionDelegate
      responseDataHandler:responseDataHandler];
 }
 
@@ -390,11 +392,13 @@ static NSString * const kDateFormat             = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 + (void)sendRequest:(NSMutableURLRequest *)request
  prefixErrorMessage:(NSString *)prefixErrorMessage
     activityPackage:(ADJActivityPackage *)activityPackage
+ urlSessionDelegate:(id<NSURLSessionDataDelegate>)urlSessionDelegate
 responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler {
     [ADJUtil sendRequest:request
       prefixErrorMessage:prefixErrorMessage
       suffixErrorMessage:nil
          activityPackage:activityPackage
+      urlSessionDelegate:urlSessionDelegate
      responseDataHandler:responseDataHandler];
 }
 
@@ -402,6 +406,7 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
  prefixErrorMessage:(NSString *)prefixErrorMessage
  suffixErrorMessage:(NSString *)suffixErrorMessage
     activityPackage:(ADJActivityPackage *)activityPackage
+ urlSessionDelegate:(id<NSURLSessionDataDelegate>)urlSessionDelegate
 responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler {
     Class NSURLSessionClass = NSClassFromString(@"NSURLSession");
 
@@ -413,6 +418,7 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
                       prefixErrorMessage:prefixErrorMessage
                       suffixErrorMessage:suffixErrorMessage
                          activityPackage:activityPackage
+                      urlSessionDelegate:urlSessionDelegate
                      responseDataHandler:responseDataHandler];
     } else {
         [ADJUtil sendNSURLConnectionRequest:request
@@ -427,8 +433,17 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
              prefixErrorMessage:(NSString *)prefixErrorMessage
              suffixErrorMessage:(NSString *)suffixErrorMessage
                 activityPackage:(ADJActivityPackage *)activityPackage
+             urlSessionDelegate:(id<NSURLSessionDataDelegate>)urlSessionDelegate
             responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
 {
+    NSLog(@"urlSessionConfiguration identifier %@", [urlSessionConfiguration identifier]);
+    if ([@"Adjust" isEqualToString:urlSessionConfiguration.identifier]) {
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:urlSessionConfiguration delegate:urlSessionDelegate delegateQueue:nil];
+
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request];
+        [task resume];
+        return;
+    }
     NSURLSession *session = [NSURLSession sessionWithConfiguration:urlSessionConfiguration];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:

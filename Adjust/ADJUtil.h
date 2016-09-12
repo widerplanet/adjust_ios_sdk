@@ -48,17 +48,20 @@ typedef void (^selfInjectedBlock)(id);
      prefixErrorMessage:(NSString *)prefixErrorMessage
      suffixErrorMessage:(NSString *)suffixErrorMessage
         activityPackage:(ADJActivityPackage *)activityPackage
+     urlSessionDelegate:(id<NSURLSessionDataDelegate>)urlSessionDelegate
     responseDataHandler:(void (^) (ADJResponseData * responseData))responseDataHandler;
 
 + (void)sendRequest:(NSMutableURLRequest *)request
  prefixErrorMessage:(NSString *)prefixErrorMessage
     activityPackage:(ADJActivityPackage *)activityPackage
+ urlSessionDelegate:(id<NSURLSessionDataDelegate>)urlSessionDelegate
 responseDataHandler:(void (^) (ADJResponseData * responseData))responseDataHandler;
 
 + (void)sendRequest:(NSMutableURLRequest *)request
  prefixErrorMessage:(NSString *)prefixErrorMessage
  suffixErrorMessage:(NSString *)suffixErrorMessage
     activityPackage:(ADJActivityPackage *)activityPackage
+ urlSessionDelegate:(id<NSURLSessionDataDelegate>)urlSessionDelegate
 responseDataHandler:(void (^) (ADJResponseData * responseData))responseDataHandler;
 
 + (NSDictionary *)convertDictionaryValues:(NSDictionary *)dictionary;
@@ -85,4 +88,6 @@ responseDataHandler:(void (^) (ADJResponseData * responseData))responseDataHandl
 + (BOOL)deleteFile:(NSString *)filename;
 
 + (void)launchDeepLinkMain:(NSURL *)deepLinkUrl;
+
++ (void) saveJsonResponse:(NSData *)jsonData responseData:(ADJResponseData *)responseData;
 @end

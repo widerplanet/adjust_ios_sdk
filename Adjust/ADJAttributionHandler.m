@@ -176,9 +176,11 @@ attributionResponseData:(ADJAttributionResponseData *)attributionResponseData {
     }
     [selfI.logger verbose:@"%@", selfI.attributionPackage.extendedString];
 
+    return; // XXX
     [ADJUtil sendRequest:[selfI requestI:selfI]
       prefixErrorMessage:@"Failed to get attribution"
          activityPackage:selfI.attributionPackage
+      urlSessionDelegate:nil
      responseDataHandler:^(ADJResponseData * responseData)
     {
         if ([responseData isKindOfClass:[ADJAttributionResponseData class]]) {

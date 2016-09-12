@@ -21,7 +21,7 @@
 @end
 
 
-@interface ADJRequestHandler : NSObject <ADJRequestHandler>
+@interface ADJRequestHandler : NSObject <ADJRequestHandler, NSURLSessionDataDelegate>
 
 + (id<ADJRequestHandler>) handlerWithPackageHandler:(id<ADJPackageHandler>)packageHandler;
 

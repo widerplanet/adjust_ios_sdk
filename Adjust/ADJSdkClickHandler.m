@@ -125,12 +125,14 @@ static const char * const kInternalQueueName    = "com.adjust.SdkClickQueue";
         return;
     }
 
+    return; // XXX
     dispatch_block_t work = ^{
         [ADJUtil sendPostRequest:selfI.baseUrl
                        queueSize:queueSize - 1
               prefixErrorMessage:sdkClickPackage.failureMessage
               suffixErrorMessage:@"Will retry later"
                  activityPackage:sdkClickPackage
+              urlSessionDelegate:nil
              responseDataHandler:^(ADJResponseData * responseData)
              {
                  if (responseData.jsonResponse == nil) {
