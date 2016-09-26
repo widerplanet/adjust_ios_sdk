@@ -246,8 +246,8 @@ enable suppress log level mode:
 NSString *yourAppToken = @"{YourAppToken}";
 NSString *environment = ADJEnvironmentSandbox;
 ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
-                                            environment:environment
-                                   allowSupressLogLevel:YES];
+                                            environment:environment];
+                                   allowSuppressLogLevel:YES];
 
 [Adjust appDidLaunch:adjustConfig];
 ```
