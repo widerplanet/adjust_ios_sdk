@@ -108,6 +108,9 @@ static NSString * const kLogTag = @"Adjust";
     if ([logLevelString isEqualToString:@"assert"])
         return ADJLogLevelAssert;
 
+    if ([logLevelString isEqualToString:@"suppress"])
+        return ADJLogLevelSuppress;
+
     // default value if string does not match
     return ADJLogLevelInfo;
 }
