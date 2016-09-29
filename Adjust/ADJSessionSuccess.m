@@ -47,4 +47,26 @@
             self.jsonResponse];
 }
 
+- (NSDictionary *)dictionary {
+    NSMutableDictionary *responseDataDic = [NSMutableDictionary dictionary];
+
+    if (self.message != nil) {
+        [responseDataDic setObject:self.message forKey:@"message"];
+    }
+
+    if (self.timeStamp != nil) {
+        [responseDataDic setObject:self.timeStamp forKey:@"timeStamp"];
+    }
+
+    if (self.adid != nil) {
+        [responseDataDic setObject:self.adid forKey:@"adid"];
+    }
+
+    if (self.jsonResponse != nil) {
+        [responseDataDic setObject:self.jsonResponse forKey:@"jsonResponse"];
+    }
+
+    return responseDataDic;
+}
+
 @end

@@ -30,5 +30,6 @@
 
 + (ADJEventFailure *)eventFailureResponseData;
 - (id)init;
+- (NSDictionary *)dictionary;
 
 @end

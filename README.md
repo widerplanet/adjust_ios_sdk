@@ -247,7 +247,7 @@ NSString *yourAppToken = @"{YourAppToken}";
 NSString *environment = ADJEnvironmentSandbox;
 ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
                                             environment:environment
-                                   allowSupressLogLevel:YES];
+                                   allowSuppressLogLevel:YES];
 
 [Adjust appDidLaunch:adjustConfig];
 ```

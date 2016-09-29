@@ -27,5 +27,6 @@
 
 + (ADJEventSuccess *)eventSuccessResponseData;
 - (id)init;
+- (NSDictionary *)dictionary;
 
 @end

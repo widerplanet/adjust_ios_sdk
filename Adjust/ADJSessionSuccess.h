@@ -24,5 +24,6 @@
 
 + (ADJSessionSuccess *)sessionSuccessResponseData;
 - (id)init;
+- (NSDictionary *)dictionary;
 
 @end
