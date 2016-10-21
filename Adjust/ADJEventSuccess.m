@@ -42,11 +42,11 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat: @"Event Success msg:%@ time:%@ adid:%@ event:%@ json:%@",
-            self.message,
-            self.timeStamp,
-            self.adid,
-            self.eventToken,
-            self.jsonResponse];
+           self.message,
+           self.timeStamp,
+           self.adid,
+           self.eventToken,
+           self.jsonResponse];
 }
 
 - (NSDictionary *)dictionary {
@@ -69,7 +69,11 @@
     }
 
     if (self.jsonResponse != nil) {
-        [responseDataDic setObject:self.jsonResponse forKey:@"jsonResponse"];
+        NSError * err;
+        NSData * jsonData = [NSJSONSerialization dataWithJSONObject:self.jsonResponse options:0 error:&err]; 
+        NSString * myString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
+        [responseDataDic setObject:myString forKey:@"jsonResponse"];
     }
 
     return responseDataDic;
