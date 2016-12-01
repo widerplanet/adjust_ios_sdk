@@ -138,7 +138,7 @@ NSString * const ADJEnvironmentProduction   = @"production";
         return;
     }
 
-    [adjustConfig setSdkPrefix:@"xamarin4.10.0"];
+    [adjustConfig setSdkPrefix:@"xamarin4.10.1"];
 
     self.activityHandler = [ADJAdjustFactory activityHandlerWithConfig:adjustConfig
                                         sessionParametersActionsArray:self.sessionParametersActionsArray
