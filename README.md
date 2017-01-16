@@ -226,8 +226,8 @@ If you don't want your app in production to display any logs coming from the adj
 NSString *yourAppToken = @"{YourAppToken}";
 NSString *environment = ADJEnvironmentSandbox;
 ADJConfig *adjustConfig = [ADJConfig configWithAppToken:yourAppToken
-                                            environment:environment];
-                                   allowSuppressLogLevel:YES];
+                                            environment:environment
+                                   allowSupressLogLevel:YES];
 
 [Adjust appDidLaunch:adjustConfig];
 ```
