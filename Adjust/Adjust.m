@@ -172,7 +172,7 @@ static dispatch_once_t onceToken = 0;
         return;
     }
 
-    [adjustConfig setSdkPrefix:@"xamarin4.11.0"];
+    [adjustConfig setSdkPrefix:@"xamarin4.11.1"];
 
     self.activityHandler = [ADJAdjustFactory activityHandlerWithConfig:adjustConfig
                                                         savedPreLaunch:self.savedPreLaunch];
