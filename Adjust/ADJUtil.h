@@ -19,9 +19,12 @@ typedef void (^selfInjectedBlock)(id);
 
 @interface ADJUtil : NSObject
 
+
 + (id)readObject:(NSString *)filename
       objectName:(NSString *)objectName
            class:(Class)classToRead;
+
++ (void)setBaseUrl:(NSString *)url;
 
 + (void)excludeFromBackup:(NSString *)filename;
 
@@ -39,9 +42,16 @@ typedef void (^selfInjectedBlock)(id);
                   selector:(SEL)selector
                 withObject:(id)object;
 
+
 + (void)launchInQueue:(dispatch_queue_t)queue
            selfInject:(id)selfInject
                 block:(selfInjectedBlock)block;
+
++ (void)sendPostRequest:(NSUInteger)queueSize
+     prefixErrorMessage:(NSString *)prefixErrorMessage
+     suffixErrorMessage:(NSString *)suffixErrorMessage
+        activityPackage:(ADJActivityPackage *)activityPackage
+    responseDataHandler:(void (^) (ADJResponseData * responseData))responseDataHandler;
 
 + (void)sendRequest:(NSMutableURLRequest *)request
  prefixErrorMessage:(NSString *)prefixErrorMessage
@@ -53,13 +63,6 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
  suffixErrorMessage:(NSString *)suffixErrorMessage
     activityPackage:(ADJActivityPackage *)activityPackage
 responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler;
-
-+ (void)sendPostRequest:(NSURL *)baseUrl
-              queueSize:(NSUInteger)queueSize
-     prefixErrorMessage:(NSString *)prefixErrorMessage
-     suffixErrorMessage:(NSString *)suffixErrorMessage
-        activityPackage:(ADJActivityPackage *)activityPackage
-    responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler;
 
 + (NSString *)idfa;
 

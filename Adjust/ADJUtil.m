@@ -41,8 +41,8 @@ static NSString * const kUniversalLinkPattern       = @"https://[^.]*\\.ulink\\.
 static NSString * const kOptionalRedirectPattern    = @"adjust_redirect=[^&#]*";
 static NSString * const kShortUniversalLinkPattern  = @"http[s]?://[a-z0-9]{4}\\.adj\\.st/?(.*)";
 
-static NSString * const kBaseUrl                    = @"https://app.adjust.com";
-static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'Z";
+static NSString * kBaseUrl = @"https://app.adjust.com";
+static NSString * const kDateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'Z";
 
 @implementation ADJUtil
 
@@ -150,6 +150,11 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
     userAgent = config.userAgent;
 }
 
++ (void)setBaseUrl:(NSString *)url
+{
+    kBaseUrl = url;
+}
+
 + (NSString *)baseUrl {
     return kBaseUrl;
 }
@@ -214,8 +219,6 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
     NSError *error = nil;
     NSException *exception = nil;
     NSDictionary *jsonDict = [ADJUtil buildJsonDict:jsonData exceptionPtr:&exception errorPtr:&error];
-    //        NSString *decodedString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    //       NSLog(@"decoded cookie: %@", decodedString);
 
     if (exception != nil) {
         NSString *message = [NSString stringWithFormat:@"Failed to parse json response. (%@)", exception.description];
@@ -362,13 +365,13 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
     }
 }
 
-+ (void)sendPostRequest:(NSURL *)baseUrl
-              queueSize:(NSUInteger)queueSize
++ (void)sendPostRequest:(NSUInteger)queueSize
      prefixErrorMessage:(NSString *)prefixErrorMessage
      suffixErrorMessage:(NSString *)suffixErrorMessage
         activityPackage:(ADJActivityPackage *)activityPackage
     responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler {
-    NSMutableURLRequest *request = [ADJUtil requestForPackage:activityPackage baseUrl:baseUrl queueSize:queueSize];
+    NSMutableURLRequest *request = [ADJUtil requestForPackage:activityPackage queueSize:queueSize];
+    //NSLog(@"URL string: %@", [[request URL] absoluteString]);
 
     [ADJUtil sendRequest:request
       prefixErrorMessage:prefixErrorMessage
