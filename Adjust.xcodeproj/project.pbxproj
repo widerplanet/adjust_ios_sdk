@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		20000E601E81402700952B59 /* ADJAnalyzer.h in Headers */ = {isa = PBXBuildFile; fileRef = 20000E5E1E81402700952B59 /* ADJAnalyzer.h */; };
+		20000E611E81402700952B59 /* ADJAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20000E5F1E81402700952B59 /* ADJAnalyzer.m */; };
 		9601C1A01A31DD8900A9AE21 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9601C19C1A31DD7F00A9AE21 /* CoreTelephony.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9601C1A31A31DE0D00A9AE21 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9601C1A11A31DE0300A9AE21 /* SystemConfiguration.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9601CAE41C74B70600670879 /* ADJEventSuccess.h in Headers */ = {isa = PBXBuildFile; fileRef = 9601CAE21C74B70600670879 /* ADJEventSuccess.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -356,6 +358,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		20000E5E1E81402700952B59 /* ADJAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJAnalyzer.h; sourceTree = "<group>"; };
+		20000E5F1E81402700952B59 /* ADJAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADJAnalyzer.m; sourceTree = "<group>"; };
 		9601C19C1A31DD7F00A9AE21 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9601C1A11A31DE0300A9AE21 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9601CAE21C74B70600670879 /* ADJEventSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADJEventSuccess.h; sourceTree = "<group>"; };
@@ -686,6 +690,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20000E5D1E81402700952B59 /* AdjustAnalyzer */ = {
+			isa = PBXGroup;
+			children = (
+				20000E5E1E81402700952B59 /* ADJAnalyzer.h */,
+				20000E5F1E81402700952B59 /* ADJAnalyzer.m */,
+			);
+			path = AdjustAnalyzer;
+			sourceTree = "<group>";
+		};
 		9648C5E41CD1765E00A3B049 /* AdjustBridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +732,7 @@
 		9679920418BBAE2800394606 = {
 			isa = PBXGroup;
 			children = (
+				20000E5D1E81402700952B59 /* AdjustAnalyzer */,
 				96E5E34B18BBB48A008E7B30 /* Adjust */,
 				9DFA37AE1C0F219400782607 /* AdjustSdk */,
 				9648C5E41CD1765E00A3B049 /* AdjustBridge */,
@@ -1154,6 +1168,7 @@
 				96BCFBDF1AC99368005A65C5 /* ADJDeviceInfo.h in Headers */,
 				96BCFBE01AC9936C005A65C5 /* ADJAttributionHandler.h in Headers */,
 				96854A591B1F2779002B2874 /* ADJTimerOnce.h in Headers */,
+				20000E601E81402700952B59 /* ADJAnalyzer.h in Headers */,
 				96854A5F1B1F278C002B2874 /* ADJTimerCycle.h in Headers */,
 				96FCC53A1C186426007BBFE1 /* ADJResponseData.h in Headers */,
 				96164D8C1CCA4DEA009431AB /* ADJSystemProfile.h in Headers */,
@@ -1566,6 +1581,7 @@
 				96C0EFE01A3EF47A00B39F31 /* NSString+ADJAdditions.m in Sources */,
 				96C0EFE11A3EF47A00B39F31 /* UIDevice+ADJAdditions.m in Sources */,
 				96E5E38118BBB48A008E7B30 /* Adjust.m in Sources */,
+				20000E611E81402700952B59 /* ADJAnalyzer.m in Sources */,
 				96E5E38B18BBB48A008E7B30 /* ADJActivityHandler.m in Sources */,
 				96E5E38C18BBB48A008E7B30 /* ADJActivityKind.m in Sources */,
 				96E5E38D18BBB48A008E7B30 /* ADJActivityPackage.m in Sources */,
