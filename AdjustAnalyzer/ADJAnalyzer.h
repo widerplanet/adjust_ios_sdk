@@ -11,7 +11,6 @@
 @interface ADJAnalyzer : NSObject
 
 + (void)init:(NSString *)baseUrl
-      isInit:(BOOL)isInit
 onReceiveCommand:(void (^)(NSString *callingClass, NSString *funcName, NSDictionary *params))onReceiveCommand;
 
 @end

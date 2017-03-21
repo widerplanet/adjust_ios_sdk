@@ -13,7 +13,6 @@
 
 // Called from main app to initialize the test session and receive commands
 + (void)init:(NSString *)baseUrl
-      isInit:(BOOL)isInit
 onReceiveCommand:(void (^)(NSString *callingClass, NSString *funcName, NSDictionary *params))onReceiveCommand
 {
     if(!onReceiveCommand) {

@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [ADJAnalyzer init:@"http://192.168.8.138:8080" isInit:YES
+    [ADJAnalyzer init:@"http://192.168.8.138:8080"
      onReceiveCommand:^(NSString *callingClass, NSString *funcName, NSDictionary *paramsDict) {
          [ADJDictionary executeCommand:callingClass funcName:funcName paramsDict:paramsDict];
      }];
