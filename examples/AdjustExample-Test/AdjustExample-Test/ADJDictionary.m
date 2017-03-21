@@ -63,14 +63,15 @@
     NSLog(@">>> ADJDictionary_System: ");
     
     if([funcName isEqual: @"sleep"]) {
-        double delay = [[paramsDict objectForKey:@"millis"][0] doubleValue];
+        double delayInMillis = [[paramsDict objectForKey:@"millis"][0] doubleValue];
+        double delayInSeconds = delayInMillis / 1000;
 
         NSLog(@"Sleeping...");
-        [NSThread sleepForTimeInterval:delay];
-        NSLog(@"Slept...");
+        [NSThread sleepForTimeInterval:delayInSeconds];
+        NSLog(@"Woke up");
     }
-    
 }
+
 @end
 
 @implementation ADJDictionary_Foo
@@ -80,11 +81,10 @@
     NSLog(@">>> ADJDictionary_Foo: ");
     
     if([funcName isEqual: @"fooTest"]) {
-        NSLog(@"Sleeping...");
-        [NSThread sleepForTimeInterval:10.0f];
-        NSLog(@"Slept...");
+        NSLog(@"Sleeping... for 'foo'");
+        [NSThread sleepForTimeInterval:3.0f];
+        NSLog(@"Slept... for 'foo'");
     }
-    
 }
 
 @end
