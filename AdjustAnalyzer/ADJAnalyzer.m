@@ -9,8 +9,6 @@
 #import "ADJAnalyzer.h"
 #import "ADJUtil.h"
 
-static BOOL sIsInit;
-
 @implementation ADJAnalyzer
 
 // Called from main app to initialize the test session and receive commands
