@@ -11,6 +11,7 @@
 @interface ADJAnalyzer : NSObject
 
 + (void)init:(NSString *)baseUrl
+   clientSdk:(NSString *)clientSdk
 onReceiveCommand:(void (^)(NSString *callingClass, NSString *funcName, NSDictionary *params))onReceiveCommand;
 
 @end

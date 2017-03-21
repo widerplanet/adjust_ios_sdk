@@ -13,6 +13,7 @@
 
 // Called from main app to initialize the test session and receive commands
 + (void)init:(NSString *)baseUrl
+   clientSdk:(NSString *)clientSdk
 onReceiveCommand:(void (^)(NSString *callingClass, NSString *funcName, NSDictionary *params))onReceiveCommand
 {
     if(!onReceiveCommand) {
@@ -29,6 +30,7 @@ onReceiveCommand:(void (^)(NSString *callingClass, NSString *funcName, NSDiction
     
     [request setHTTPMethod:@"POST"];
     [request setURL:[NSURL URLWithString:targetUrl]];
+    [request addValue:clientSdk forHTTPHeaderField:@"Client-SDK"];
     
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
       ^(NSData * _Nullable responseData,
