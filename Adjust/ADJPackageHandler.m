@@ -236,6 +236,11 @@ startsSending:(BOOL)startsSending
     [selfI writePackageQueueS:selfI];
 }
 
+#pragma mark - static
++ (void)deleteState {
+    [ADJUtil deleteFileWithName:kPackageQueueFilename];
+}
+
 #pragma mark - private
 - (void)readPackageQueueI:(ADJPackageHandler *)selfI {
     [NSKeyedUnarchiver setClass:[ADJActivityPackage class] forClassName:@"AIActivityPackage"];
