@@ -204,21 +204,11 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
 }
 
 + (void)saveJsonResponse:(NSData *)jsonData responseData:(ADJResponseData *)responseData {
-    NSError *error = nil;
-    NSException *exception = nil;
-    NSDictionary *jsonDict = [ADJUtil buildJsonDict:jsonData exceptionPtr:&exception errorPtr:&error];
+    NSString *errorDescription = nil;
+    NSDictionary *jsonDict = [ADJUtil buildJsonDict:jsonData errorDescription:&errorDescription];
 
-    if (exception != nil) {
-        NSString *message = [NSString stringWithFormat:@"Failed to parse json response. (%@)", exception.description];
-
-        [ADJAdjustFactory.logger error:message];
-        responseData.message = message;
-
-        return;
-    }
-
-    if (error != nil) {
-        NSString *message = [NSString stringWithFormat:@"Failed to parse json response. (%@)", error.localizedDescription];
+    if (errorDescription != nil) {
+        NSString *message = [NSString stringWithFormat:@"Failed to parse json response. (%@)", errorDescription];
 
         [ADJAdjustFactory.logger error:message];
         responseData.message = message;
@@ -230,22 +220,51 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
 }
 
 + (NSDictionary *)buildJsonDict:(NSData *)jsonData
-                   exceptionPtr:(NSException **)exceptionPtr
-                       errorPtr:(NSError **)error {
+               errorDescription:(NSString **)errorDescription {
     if (jsonData == nil) {
         return nil;
     }
 
-    NSDictionary *jsonDict = nil;
-
     @try {
-        jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:error];
+        // jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:error];
+        NSError *error = nil;
+
+        NSString *nsjsonClassName = [NSString adjJoinNon:@"N", @"S", @"JSON", @"Serialization", nil];
+        Class nsjsonClass = NSClassFromString(nsjsonClassName);
+        if (nsjsonClass == nil) {
+            return nil;
+        }
+        NSString *nsjsonSelectString = [NSString adjJoinNon:@"JSONObjectWithData:", @"options:", @"error:", nil];
+        SEL nsjsonSelect = NSSelectorFromString(nsjsonSelectString);
+        if (![nsjsonClass respondsToSelector:nsjsonSelect]) {
+            return nil;
+        }
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[nsjsonClass methodSignatureForSelector:nsjsonSelect]];
+        invocation.target = nsjsonClass;
+        invocation.selector = nsjsonSelect;
+
+        [invocation setArgument:&jsonData atIndex:2];
+
+        NSUInteger readOptions = kNilOptions;
+        [invocation setArgument:&readOptions atIndex:3];
+        [invocation setArgument:&error atIndex:4];
+
+        [invocation invoke];
+
+        NSDictionary * __unsafe_unretained tempResultSet;
+
+        [invocation getReturnValue:&tempResultSet];
+
+        if (error != nil) {
+            *errorDescription = error.description;
+        }
+
+        return tempResultSet;
     } @catch (NSException *ex) {
-        *exceptionPtr = ex;
-        return nil;
+        *errorDescription = ex.description;
     }
 
-    return jsonDict;
+    return nil;
 }
 
 + (NSString *)getFullFilename:(NSString *)baseFilename {

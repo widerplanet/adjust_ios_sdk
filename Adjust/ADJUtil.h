@@ -98,8 +98,7 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
 + (NSDictionary *)convertDictionaryValues:(NSDictionary *)dictionary;
 
 + (NSDictionary *)buildJsonDict:(NSData *)jsonData
-                   exceptionPtr:(NSException **)exceptionPtr
-                       errorPtr:(NSError **)error;
+                       errorDescription:(NSString **)errorDescription;
 
 + (NSDictionary *)mergeParameters:(NSDictionary *)target
                            source:(NSDictionary *)source
