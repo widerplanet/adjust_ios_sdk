@@ -73,6 +73,21 @@
     return result;
 }
 
++ (NSString *)adjJoinNon:(NSString *)first, ... {
+    NSString *iter, *result = first;
+    va_list strings;
+    va_start(strings, first);
+
+    while ((iter = va_arg(strings, NSString*))) {
+        result = [result stringByAppendingString:iter];
+    }
+
+    va_end(strings);
+
+    return result;
+}
+
+
 + (BOOL)adjIsEqual:(NSString *)first toString:(NSString *)second {
     if (first == nil && second == nil) {
         return YES;
