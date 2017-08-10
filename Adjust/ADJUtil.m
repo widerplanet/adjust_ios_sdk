@@ -468,27 +468,79 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
 
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
-                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
-                                      ADJResponseData *responseData = [ADJUtil completionHandler:data
-                                                                                        response:(NSHTTPURLResponse *)response
-                                                                                           error:error
-                                                                              prefixErrorMessage:prefixErrorMessage
-                                                                              suffixErrorMessage:suffixErrorMessage
-                                                                                 activityPackage:activityPackage];
+        ^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSString * errorDescription = nil;
+            if (error != nil) {
+                errorDescription = error.description;
+            }
+            ADJResponseData *responseData = [ADJUtil completionHandler:data
+                                                              response:(NSHTTPURLResponse *)response
+                                                      errorDescription:errorDescription
+                                                   prefixErrorMessage:prefixErrorMessage
+                                                   suffixErrorMessage:suffixErrorMessage
+                                                      activityPackage:activityPackage];
 
-                                      if (nil != connectionValidator) {
-                                          if (NO == connectionValidator.didValidationHappen) {
-                                              responseData.validationResult = YES;
-                                          } else {
-                                              responseData.validationResult = connectionValidator.validationResult;
-                                          }
-                                      }
+            if (nil != connectionValidator) {
+                if (NO == connectionValidator.didValidationHappen) {
+                    responseData.validationResult = YES;
+                } else {
+                    responseData.validationResult = connectionValidator.validationResult;
+                }
+            }
 
-                                      responseDataHandler(responseData);
-                                  }];
+            responseDataHandler(responseData);
+        }];
     
     [task resume];
     [session finishTasksAndInvalidate];
+}
+
++ (NSData *)sendSynchronousRequest:(NSURLRequest *)request
+                    urlResponsePtr:(NSURLResponse **)urlResponsePtr
+               errorDescriptionPtr:(NSString **)errorDescriptionPtr
+{
+
+    @try {
+        // NSData *data = [NSURLConnection sendSynchronousRequest:request
+        //                                      returningResponse:&urlResponse
+        //                                                  error:&responseError];
+        NSError * __autoreleasing error = nil;
+        NSError * __autoreleasing *errorPtr = &error;
+
+        NSString *nsjsonClassName = [NSString adjJoinNon:@"N", @"S", @"URL", @"Connection", nil];
+        Class nsjsonClass = NSClassFromString(nsjsonClassName);
+        if (nsjsonClass == nil)  {
+            return nil;
+        }
+        NSString *nsjsonSelectString = [NSString adjJoinNon:@"sendSynchronousRequest:", @"returningResponse:", @"error:", nil];
+        SEL nsjsonSelect = NSSelectorFromString(nsjsonSelectString);
+        if (![nsjsonClass respondsToSelector:nsjsonSelect]) {
+            return nil;
+        }
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[nsjsonClass methodSignatureForSelector:nsjsonSelect]];
+        invocation.target = nsjsonClass;
+        invocation.selector = nsjsonSelect;
+
+        [invocation setArgument:&request atIndex:2];
+        [invocation setArgument:&urlResponsePtr atIndex:3];
+        [invocation setArgument:&errorPtr atIndex:4];
+
+        [invocation invoke];
+
+        NSData * __unsafe_unretained tempResultSet;
+
+        [invocation getReturnValue:&tempResultSet];
+
+        if (error != nil) {
+            *errorDescriptionPtr = error.description;
+        }
+
+        return tempResultSet;
+    } @catch (NSException *ex) {
+        *errorDescriptionPtr = ex.description;
+    }
+
+    return nil;
 }
 
 + (void)sendNSURLConnectionRequest:(NSMutableURLRequest *)request
@@ -496,19 +548,17 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
                 suffixErrorMessage:(NSString *)suffixErrorMessage
                    activityPackage:(ADJActivityPackage *)activityPackage
                responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler {
-    NSError *responseError = nil;
-    NSHTTPURLResponse *urlResponse = nil;
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    NSData *data = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&urlResponse
-                                                     error:&responseError];
-#pragma clang diagnostic pop
+    NSString *errorDescription = nil;
+    NSURLResponse * urlResponse = nil;
+
+    NSData *data = [ADJUtil sendSynchronousRequest:request
+                                    urlResponsePtr:&urlResponse
+                               errorDescriptionPtr:&errorDescription];
 
     ADJResponseData *responseData = [ADJUtil completionHandler:data
                                                       response:(NSHTTPURLResponse *)urlResponse
-                                                         error:responseError
+                                              errorDescription:errorDescription
                                             prefixErrorMessage:prefixErrorMessage
                                             suffixErrorMessage:suffixErrorMessage
                                                activityPackage:activityPackage];
@@ -518,16 +568,16 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
 
 + (ADJResponseData *)completionHandler:(NSData *)data
                               response:(NSHTTPURLResponse *)urlResponse
-                                 error:(NSError *)responseError
+                      errorDescription:(NSString *)errorDescription
                     prefixErrorMessage:(NSString *)prefixErrorMessage
                     suffixErrorMessage:(NSString *)suffixErrorMessage
                        activityPackage:(ADJActivityPackage *)activityPackage {
     ADJResponseData *responseData = [ADJResponseData buildResponseData:activityPackage];
 
     // Connection error
-    if (responseError != nil) {
+    if (errorDescription != nil) {
         NSString *errorMessage = [ADJUtil formatErrorMessage:prefixErrorMessage
-                                          systemErrorMessage:responseError.localizedDescription
+                                          systemErrorMessage:errorDescription
                                           suffixErrorMessage:suffixErrorMessage];
 
         [ADJAdjustFactory.logger error:errorMessage];
