@@ -552,7 +552,7 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
 + (NSMutableURLRequest *)requestForPackage:(ADJActivityPackage *)activityPackage
                                    baseUrl:(NSURL *)baseUrl
                                  queueSize:(NSUInteger)queueSize {
-    NSURL *url = [NSURL URLWithString:activityPackage.path relativeToURL:baseUrl];
+    NSURL *url = [baseUrl URLByAppendingPathComponent:activityPackage.path];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = kRequestTimeout;
     request.HTTPMethod = @"POST";
