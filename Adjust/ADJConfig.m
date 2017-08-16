@@ -195,6 +195,7 @@
         copy.isDeviceKnown = self.isDeviceKnown;
         copy->_secretId = [self.secretId copyWithZone:zone];
         copy->_appSecret = [self.appSecret copyWithZone:zone];
+        copy.basePath = [self.basePath copyWithZone:zone];
         // adjust delegate not copied
     }
 
