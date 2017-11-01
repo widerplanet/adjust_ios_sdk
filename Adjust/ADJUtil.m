@@ -464,6 +464,9 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
 
 + (NSString *)queryString:(NSDictionary *)parameters
                 queueSize:(NSUInteger)queueSize {
+    if (parameters == nil) {
+        return nil;
+    }
     NSMutableArray *pairs = [NSMutableArray array];
 
     for (NSString *key in parameters) {
