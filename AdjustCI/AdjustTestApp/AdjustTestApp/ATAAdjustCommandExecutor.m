@@ -9,12 +9,14 @@
 #import "ATAAdjustCommandExecutor.h"
 #import "Adjust.h"
 #import "ADJAdjustFactory.h"
+#import "ATAAdjustDelegate.h"
 
 @interface ATAAdjustCommandExecutor ()
 
 @property (nonatomic, strong) NSMutableDictionary *savedConfigs;
 @property (nonatomic, strong) NSMutableDictionary *savedEvents;
 @property (nonatomic, copy) NSString *basePath;
+@property (nonatomic, strong) ATAAdjustDelegate * adjustDelegate;
 
 @end
 
@@ -180,6 +182,21 @@
     if ([parameters objectForKey:@"userAgent"]) {
         NSString *userAgent = [parameters objectForKey:@"userAgent"][0];
         [adjustConfig setUserAgent:userAgent];
+    }
+
+    self.adjustDelegate = [[ATAAdjustDelegate alloc] initWithTestLibrary:self.testLibrary];
+    BOOL delegateSet = NO;
+
+    if ([parameters objectForKey:@"attributionCallbackSendAll"]) {
+        NSLog(@"attributionCallbackSendAll detected");
+
+        [self.adjustDelegate swizzleCallbackMethod:@selector(adjustAttributionChanged:)
+                             swizzledSelector:@selector(attributionCallbackSendAll:)];
+        delegateSet = YES;
+    }
+
+    if (delegateSet) {
+        [adjustConfig setDelegate:self.adjustDelegate];
     }
 }
 

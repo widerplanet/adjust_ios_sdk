@@ -23,5 +23,6 @@ typedef void (^selfInjectedBlock)(id);
 + (NSString *)adjTrim:(NSString *)value;
 + (NSString *)formatDate:(NSDate *)value;
 + (NSString *)parseDictionaryToJsonString:(NSDictionary *) dictionary;
-
++ (NSString *)appendBasePath:(NSString *)basePath path:(NSString *)path;
++ (NSString *)queryString:(NSDictionary *)parameters;
 @end

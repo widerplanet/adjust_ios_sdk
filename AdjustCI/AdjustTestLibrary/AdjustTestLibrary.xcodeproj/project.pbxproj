@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F068B821F4D789A00B60A4C /* ATLControlChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068B811F4D789A00B60A4C /* ATLControlChannel.m */; };
 		6F068B851F4D7CF600B60A4C /* ATLUtilNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068B841F4D7CF600B60A4C /* ATLUtilNetworking.m */; };
+		6F1621D21FAA286700F02196 /* ATLTestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1621D11FAA286700F02196 /* ATLTestInfo.m */; };
 		6F3D41E71F4B129000EDD7FA /* MKBlockingQueue.m in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F3D41E61F4B129000EDD7FA /* MKBlockingQueue.m */; };
 		6F44ED961EA6497D0081B510 /* ATLTestLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F44ED951EA6497D0081B510 /* ATLTestLibrary.m */; };
 		6F44ED971EA6497D0081B510 /* ATLTestLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6F44ED941EA6497D0081B510 /* ATLTestLibrary.h */; };
@@ -34,6 +35,8 @@
 		6F068B811F4D789A00B60A4C /* ATLControlChannel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLControlChannel.m; sourceTree = "<group>"; };
 		6F068B831F4D7CF600B60A4C /* ATLUtilNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATLUtilNetworking.h; sourceTree = "<group>"; };
 		6F068B841F4D7CF600B60A4C /* ATLUtilNetworking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLUtilNetworking.m; sourceTree = "<group>"; };
+		6F1621D01FAA286700F02196 /* ATLTestInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATLTestInfo.h; sourceTree = "<group>"; };
+		6F1621D11FAA286700F02196 /* ATLTestInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATLTestInfo.m; sourceTree = "<group>"; };
 		6F3D41E51F4B128F00EDD7FA /* MKBlockingQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKBlockingQueue.h; sourceTree = "<group>"; };
 		6F3D41E61F4B129000EDD7FA /* MKBlockingQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKBlockingQueue.m; sourceTree = "<group>"; };
 		6F44ED911EA6497D0081B510 /* libAdjustTestLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAdjustTestLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +88,8 @@
 				6F068B811F4D789A00B60A4C /* ATLControlChannel.m */,
 				6F068B831F4D7CF600B60A4C /* ATLUtilNetworking.h */,
 				6F068B841F4D7CF600B60A4C /* ATLUtilNetworking.m */,
+				6F1621D01FAA286700F02196 /* ATLTestInfo.h */,
+				6F1621D11FAA286700F02196 /* ATLTestInfo.m */,
 			);
 			path = AdjustTestLibrary;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				6F44ED961EA6497D0081B510 /* ATLTestLibrary.m in Sources */,
 				6F068B851F4D7CF600B60A4C /* ATLUtilNetworking.m in Sources */,
 				6F068B821F4D789A00B60A4C /* ATLControlChannel.m in Sources */,
+				6F1621D21FAA286700F02196 /* ATLTestInfo.m in Sources */,
 				6F44EDAD1EA64C3B0081B510 /* ATLUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

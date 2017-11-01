@@ -10,6 +10,8 @@
 #import "ATLUtil.h"
 #import "ATLConstants.h"
 #import "ATLControlChannel.h"
+#import "ADJUtil.h"
+#import "ATLTestInfo.h"
 
 //static const char * const kInternalQueueName     = "com.adjust.TestLibrary";
 
@@ -24,6 +26,8 @@
 @property (nonatomic, strong) MKBlockingQueue *waitControlQueue;
 @property (nonatomic, strong) ATLControlChannel *controlChannel;
 @property (nonatomic, copy) NSString *testNames;
+
+@property (nonatomic, strong) ATLTestInfo *testInfo;
 
 @end
 
@@ -93,8 +97,12 @@ static NSURL * _baseUrl = nil;
     if (self.controlChannel != nil) {
         [self.controlChannel teardown];
     }
+    if (self.testInfo != nil) {
+        [self.testInfo teardown];
+    }
     self.waitControlQueue = nil;
     self.controlChannel = nil;
+    self.testInfo = nil;
 }
 
 - (void) initTestLibrary {
@@ -113,6 +121,16 @@ static NSURL * _baseUrl = nil;
 - (void)initTest {
     self.waitControlQueue = [[MKBlockingQueue alloc] init];
     self.controlChannel = [[ATLControlChannel alloc] initWithTestLibrary:self];
+    self.testInfo = [[ATLTestInfo alloc] initWithTestLibrary:self];
+}
+
+- (void)addInfoToSend:(NSString *)key
+                value:(NSString *)value {
+    [self.testInfo addInfoToSend:key value:value];
+}
+
+- (void)sendInfoToServer {
+    [self.testInfo sendInfoToServer:self.currentBasePath];
 }
 
 - (void)sendTestSessionI:(NSString *)clientSdk {

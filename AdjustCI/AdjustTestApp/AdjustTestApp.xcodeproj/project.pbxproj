@@ -52,6 +52,8 @@
 		6F068C371F4DC27600B60A4C /* ATLUtilNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068C311F4DC25600B60A4C /* ATLUtilNetworking.m */; };
 		6F068C381F4DC27600B60A4C /* MKBlockingQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068C331F4DC25600B60A4C /* MKBlockingQueue.m */; };
 		6F068C3B1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068C3A1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m */; };
+		6F1621D51FAA30C400F02196 /* ATLTestInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F1621D31FAA30C300F02196 /* ATLTestInfo.m */; };
+		6F227C261FA1DE0B007591C7 /* ATAAdjustDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F227C251FA1DE0B007591C7 /* ATAAdjustDelegate.m */; };
 		6F8E3B3C1F863AFC00718E7C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E3B3A1F863AFC00718E7C /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6F8E3B3D1F863AFC00718E7C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E3B3B1F863AFC00718E7C /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -147,6 +149,10 @@
 		6F068C331F4DC25600B60A4C /* MKBlockingQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKBlockingQueue.m; sourceTree = "<group>"; };
 		6F068C391F4DC57100B60A4C /* ATAAdjustCommandExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAAdjustCommandExecutor.h; sourceTree = "<group>"; };
 		6F068C3A1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustCommandExecutor.m; sourceTree = "<group>"; };
+		6F1621D31FAA30C300F02196 /* ATLTestInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATLTestInfo.m; sourceTree = "<group>"; };
+		6F1621D41FAA30C400F02196 /* ATLTestInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATLTestInfo.h; sourceTree = "<group>"; };
+		6F227C241FA1DE0B007591C7 /* ATAAdjustDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAAdjustDelegate.h; sourceTree = "<group>"; };
+		6F227C251FA1DE0B007591C7 /* ATAAdjustDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustDelegate.m; sourceTree = "<group>"; };
 		6F8E3B3A1F863AFC00718E7C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		6F8E3B3B1F863AFC00718E7C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -197,6 +203,8 @@
 				6F068BB61F4DAB8E00B60A4C /* Adjust */,
 				6F068C391F4DC57100B60A4C /* ATAAdjustCommandExecutor.h */,
 				6F068C3A1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m */,
+				6F227C241FA1DE0B007591C7 /* ATAAdjustDelegate.h */,
+				6F227C251FA1DE0B007591C7 /* ATAAdjustDelegate.m */,
 			);
 			path = AdjustTestApp;
 			sourceTree = "<group>";
@@ -298,6 +306,8 @@
 				6F068C311F4DC25600B60A4C /* ATLUtilNetworking.m */,
 				6F068C321F4DC25600B60A4C /* MKBlockingQueue.h */,
 				6F068C331F4DC25600B60A4C /* MKBlockingQueue.m */,
+				6F1621D41FAA30C400F02196 /* ATLTestInfo.h */,
+				6F1621D31FAA30C300F02196 /* ATLTestInfo.m */,
 			);
 			name = AdjustTestLibrary;
 			path = ../../AdjustTestLibrary/AdjustTestLibrary;
@@ -411,7 +421,9 @@
 				6F068C0F1F4DAC5A00B60A4C /* ADJReachability.m in Sources */,
 				6F068C101F4DAC5A00B60A4C /* ADJRequestHandler.m in Sources */,
 				6F068C111F4DAC5A00B60A4C /* ADJResponseData.m in Sources */,
+				6F1621D51FAA30C400F02196 /* ATLTestInfo.m in Sources */,
 				6F068C121F4DAC5A00B60A4C /* ADJSdkClickHandler.m in Sources */,
+				6F227C261FA1DE0B007591C7 /* ATAAdjustDelegate.m in Sources */,
 				6F068C131F4DAC5A00B60A4C /* ADJSessionFailure.m in Sources */,
 				6F068C141F4DAC5A00B60A4C /* ADJSessionParameters.m in Sources */,
 				6F068C151F4DAC5A00B60A4C /* ADJSessionSuccess.m in Sources */,

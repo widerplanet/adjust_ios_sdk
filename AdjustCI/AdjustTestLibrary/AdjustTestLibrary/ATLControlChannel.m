@@ -17,7 +17,7 @@ static NSString * const CONTROL_CONTINUE_PATH = @"/control_continue";
 @interface ATLControlChannel()
 
 @property (nonatomic, strong) NSOperationQueue* operationQueue;
-@property (nonatomic, strong) ATLTestLibrary * testLibrary;
+@property (nonatomic, weak) ATLTestLibrary * testLibrary;
 @property (nonatomic, assign) BOOL closed;
 @end
 

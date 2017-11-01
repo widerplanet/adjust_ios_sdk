@@ -11,4 +11,6 @@
 
 @interface ATAAdjustCommandExecutor : NSObject<AdjustCommandDelegate>
 
+@property (nonatomic, strong) ATLTestLibrary *testLibrary;
+
 @end

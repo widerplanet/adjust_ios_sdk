@@ -124,4 +124,49 @@ static NSString * const kDateFormat                 = @"yyyy-MM-dd'T'HH:mm:ss.SS
     }
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
+
++ (NSString *)appendBasePath:(NSString *)basePath path:(NSString *)path {
+    if (basePath == nil) {
+        return path;
+    } else {
+        return [NSString stringWithFormat:@"%@%@", basePath, path];
+    }
+}
+
++ (NSString *)queryString:(NSDictionary *)parameters {
+    if (parameters == nil) {
+        return nil;
+    }
+    NSMutableArray *pairs = [NSMutableArray array];
+
+    for (NSString *key in parameters) {
+        NSString *value = [parameters objectForKey:key];
+        NSString *escapedValue = [ATLUtil urlEncode:value ];
+        NSString *escapedKey = [ATLUtil urlEncode:key];
+        NSString *pair = [NSString stringWithFormat:@"%@=%@", escapedKey, escapedValue];
+
+        [pairs addObject:pair];
+    }
+
+    NSString *queryString = [pairs componentsJoinedByString:@"&"];
+
+    return queryString;
+}
+
++ (NSString *)urlEncode:(NSString *)urlString {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+                                                                                 NULL,
+                                                                                 (CFStringRef)urlString,
+                                                                                 NULL,
+                                                                                 (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
+                                                                                 CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding)));
+#pragma clang diagnostic pop
+
+    // Alternative:
+    // return [self stringByAddingPercentEncodingWithAllowedCharacters:
+    //        [NSCharacterSet characterSetWithCharactersInString:@"!*'\"();:@&=+$,/?%#[]% "]];
+}
+
 @end

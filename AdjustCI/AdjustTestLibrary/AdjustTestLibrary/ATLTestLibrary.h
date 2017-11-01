@@ -37,8 +37,14 @@
 
 - (void)readHeaders:(ATLHttpResponse *)httpResponse;
 
+- (void)addInfoToSend:(NSString *)key
+                value:(NSString *)value;
+
+- (void)sendInfoToServer;
+
 + (ATLTestLibrary *)testLibraryWithBaseUrl:(NSString *)baseUrl
 andCommandDelegate:(NSObject<AdjustCommandDelegate> *)commandDelegate;
 
 + (NSURL *)baseUrl;
+
 @end
