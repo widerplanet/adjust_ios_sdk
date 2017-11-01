@@ -52,6 +52,8 @@
 		6F068C371F4DC27600B60A4C /* ATLUtilNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068C311F4DC25600B60A4C /* ATLUtilNetworking.m */; };
 		6F068C381F4DC27600B60A4C /* MKBlockingQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068C331F4DC25600B60A4C /* MKBlockingQueue.m */; };
 		6F068C3B1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F068C3A1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m */; };
+		6F8E3B3C1F863AFC00718E7C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E3B3A1F863AFC00718E7C /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6F8E3B3D1F863AFC00718E7C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E3B3B1F863AFC00718E7C /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +147,8 @@
 		6F068C331F4DC25600B60A4C /* MKBlockingQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKBlockingQueue.m; sourceTree = "<group>"; };
 		6F068C391F4DC57100B60A4C /* ATAAdjustCommandExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAAdjustCommandExecutor.h; sourceTree = "<group>"; };
 		6F068C3A1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustCommandExecutor.m; sourceTree = "<group>"; };
+		6F8E3B3A1F863AFC00718E7C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		6F8E3B3B1F863AFC00718E7C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F8E3B3C1F863AFC00718E7C /* iAd.framework in Frameworks */,
+				6F8E3B3D1F863AFC00718E7C /* AdSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +169,7 @@
 			children = (
 				6F068B911F4DAB4F00B60A4C /* AdjustTestApp */,
 				6F068B901F4DAB4F00B60A4C /* Products */,
+				6F8E3B391F863AFC00718E7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -294,6 +301,15 @@
 			);
 			name = AdjustTestLibrary;
 			path = ../../AdjustTestLibrary/AdjustTestLibrary;
+			sourceTree = "<group>";
+		};
+		6F8E3B391F863AFC00718E7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6F8E3B3B1F863AFC00718E7C /* AdSupport.framework */,
+				6F8E3B3A1F863AFC00718E7C /* iAd.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
