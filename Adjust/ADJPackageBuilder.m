@@ -227,13 +227,13 @@
 - (void)injectDeviceInfoIds:(ADJDeviceInfo *)deviceInfo intoParameters:(NSMutableDictionary *)parameters {
     [ADJPackageBuilder parameters:parameters setString:UIDevice.currentDevice.adjIdForAdvertisers forKey:@"idfa"];
     [ADJPackageBuilder parameters:parameters setString:deviceInfo.vendorId forKey:@"idfv"];
+    [ADJPackageBuilder parameters:parameters setInt:deviceInfo.trackingEnabled forKey:@"tracking_enabled"];
 }
 
 - (void)injectDeviceInfo:(ADJDeviceInfo *)deviceInfo intoParameters:(NSMutableDictionary *)parameters {
     [self injectDeviceInfoIds:deviceInfo intoParameters:parameters];
 
     [ADJPackageBuilder parameters:parameters setString:deviceInfo.fbAttributionId forKey:@"fb_id"];
-    [ADJPackageBuilder parameters:parameters setInt:deviceInfo.trackingEnabled forKey:@"tracking_enabled"];
     [ADJPackageBuilder parameters:parameters setString:deviceInfo.bundeIdentifier forKey:@"bundle_id"];
     [ADJPackageBuilder parameters:parameters setString:deviceInfo.bundleVersion forKey:@"app_version"];
     [ADJPackageBuilder parameters:parameters setString:deviceInfo.bundleShortVersion forKey:@"app_version_short"];
