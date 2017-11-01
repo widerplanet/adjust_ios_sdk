@@ -185,11 +185,12 @@ attributionResponseData:(ADJAttributionResponseData *)attributionResponseData {
     [selfI.logger verbose:@"%@", selfI.attributionPackage.extendedString];
 
     NSURL *baseUrl;
+    NSString * sUrl = [ADJAdjustFactory baseUrl];
     if (selfI.basePath != nil) {
-        NSString * sUrl = [ADJAdjustFactory baseUrl];
-        baseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", sUrl, selfI.basePath]];
+        //baseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", sUrl, selfI.basePath]];
+        baseUrl = [NSURL URLWithString:selfI.basePath relativeToURL:[NSURL URLWithString:sUrl]];
     } else {
-        baseUrl = [NSURL URLWithString:[ADJAdjustFactory baseUrl]];
+        baseUrl = [NSURL URLWithString:@"/" relativeToURL:[NSURL URLWithString:sUrl]];
     }
 
     [ADJUtil sendGetRequest:baseUrl

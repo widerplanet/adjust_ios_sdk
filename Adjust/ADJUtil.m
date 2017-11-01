@@ -631,14 +631,21 @@ responseDataHandler:(void (^)(ADJResponseData *responseData))responseDataHandler
 }
 
 + (NSMutableURLRequest *)requestForGetPackage:(ADJActivityPackage *)activityPackage
-                                       baseUrl:(NSURL *)baseUrl{
-    NSURL * urlWithPath = [baseUrl URLByAppendingPathComponent:activityPackage.path];
-    NSURLComponents *components = [[NSURLComponents alloc] initWithURL:urlWithPath resolvingAgainstBaseURL:NO];
-
+                                       baseUrl:(NSURL *)baseUrl {
+    [ADJAdjustFactory.logger debug:@"baseUrl: %@", baseUrl.absoluteString];
     NSString *parameters = [ADJUtil queryString:activityPackage.parameters];
-    [components setQuery:parameters];
 
-    NSURL *url = [components URL];
+    NSURL *trueBaseUrl = [baseUrl baseURL];
+    [ADJAdjustFactory.logger debug:@"trueBaseUrl: %@", trueBaseUrl.absoluteString];
+
+    NSString *basePath = [baseUrl path];
+    [ADJAdjustFactory.logger debug:@"basePath: %@", basePath];
+
+    NSString *relativePath = [NSString stringWithFormat:@"%@%@?%@", basePath, activityPackage.path, parameters];
+    [ADJAdjustFactory.logger debug:@"relativePath: %@", relativePath];
+
+    NSURL *url = [NSURL URLWithString:relativePath relativeToURL:trueBaseUrl];
+    [ADJAdjustFactory.logger debug:@"url: %@", url.absoluteString];
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = kRequestTimeout;
