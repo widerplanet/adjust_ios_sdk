@@ -40,13 +40,22 @@ static NSString * const CONTROL_CONTINUE_PATH = @"/control_continue";
 }
 
 - (void)teardown {
-    if (self.operationQueue != nil) {
-        [ATLUtil debug:@"cancel control channel thread queue"];
-        [self.operationQueue cancelAllOperations];
-    }
-    self.operationQueue = nil;
-    self.testLibrary = nil;
     self.closed = YES;
+    if (self.operationQueue != nil) {
+        [ATLUtil debug:@"queue cancel control channel thread queue"];
+        [ATLUtil addOperationAfterLast:self.operationQueue
+                                 block:^{
+                                     [ATLUtil debug:@"cancel control channel thread queue"];
+                                     if (self.operationQueue != nil) {
+                                         [self.operationQueue cancelAllOperations];
+                                     }
+                                     self.operationQueue = nil;
+                                     self.testLibrary = nil;
+                                 }];
+    } else {
+        self.operationQueue = nil;
+        self.testLibrary = nil;
+    }
 }
 
 - (void)sendControlRequest:(NSString *)controlPath {

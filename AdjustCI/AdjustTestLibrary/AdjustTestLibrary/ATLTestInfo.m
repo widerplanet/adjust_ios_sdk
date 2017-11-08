@@ -37,13 +37,22 @@ static NSString * const TEST_INFO_PATH = @"/test_info";
 }
 
 - (void)teardown {
-    if (self.operationQueue != nil) {
-        [ATLUtil debug:@"cancel test info thread queue"];
-        [self.operationQueue cancelAllOperations];
-    }
-    self.operationQueue = nil;
-    self.testLibrary = nil;
     self.closed = YES;
+    if (self.operationQueue != nil) {
+        [ATLUtil debug:@"queue cancel test info thread queue"];
+        [ATLUtil addOperationAfterLast:self.operationQueue
+                                 block:^{
+                                     [ATLUtil debug:@"cancel test info thread queue"];
+                                     if (self.operationQueue != nil) {
+                                         [self.operationQueue cancelAllOperations];
+                                     }
+                                     self.operationQueue = nil;
+                                     self.testLibrary = nil;
+                                 }];
+    } else {
+        self.operationQueue = nil;
+        self.testLibrary = nil;
+    }
 }
 
 - (void)addInfoToSend:(NSString *)key

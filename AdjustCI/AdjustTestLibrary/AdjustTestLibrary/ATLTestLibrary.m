@@ -85,12 +85,20 @@ static NSURL * _baseUrl = nil;
 
 - (void)teardown {
     if (self.operationQueue != nil) {
-        [ATLUtil debug:@"cancel test library thread queue"];
-        [self.operationQueue cancelAllOperations];
+        [ATLUtil debug:@"queue cancel test library thread queue"];
+        [ATLUtil addOperationAfterLast:self.operationQueue
+                                 block:^{
+                                     [ATLUtil debug:@"cancel test library thread queue"];
+                                     if (self.operationQueue != nil) {
+                                         [self.operationQueue cancelAllOperations];
+                                     }
+                                     self.operationQueue = nil;
+                                     [self clearTest];
+                                 }];
+    } else {
+        self.operationQueue = nil;
+        [self clearTest];
     }
-    self.operationQueue = nil;
-
-    [self clearTest];
 }
 
 - (void)clearTest {
