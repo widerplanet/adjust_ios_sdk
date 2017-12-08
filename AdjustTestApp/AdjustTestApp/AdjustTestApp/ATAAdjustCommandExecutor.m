@@ -2,21 +2,26 @@
 //  ATAAdjustCommandExecutor.m
 //  AdjustTestApp
 //
-//  Created by Pedro on 23.08.17.
-//  Copyright © 2017 adjust. All rights reserved.
+//  Created by Pedro da Silva (@nonelse) on 23rd August 2017.
+//  Copyright © 2017 Adjust GmbH. All rights reserved.
 //
 
-#import "ATAAdjustCommandExecutor.h"
 #import "Adjust.h"
 #import "ADJAdjustFactory.h"
 #import "ATAAdjustDelegate.h"
+#import "ATAAdjustDelegateAttribution.h"
+#import "ATAAdjustDelegateEventFailure.h"
+#import "ATAAdjustDelegateEventSuccess.h"
+#import "ATAAdjustDelegateSessionSuccess.h"
+#import "ATAAdjustDelegateSessionFailure.h"
+#import "ATAAdjustCommandExecutor.h"
 
 @interface ATAAdjustCommandExecutor ()
 
+@property (nonatomic, copy) NSString *basePath;
 @property (nonatomic, strong) NSMutableDictionary *savedConfigs;
 @property (nonatomic, strong) NSMutableDictionary *savedEvents;
-@property (nonatomic, copy) NSString *basePath;
-@property (nonatomic, strong) ATAAdjustDelegate * adjustDelegate;
+@property (nonatomic, strong) NSObject<AdjustDelegate> *adjustDelegate;
 
 @end
 
@@ -24,7 +29,10 @@
 
 - (id)init {
     self = [super init];
-    if (self == nil) return nil;
+
+    if (self == nil) {
+        return nil;
+    }
 
     self.savedConfigs = [NSMutableDictionary dictionary];
     self.savedEvents = [NSMutableDictionary dictionary];
@@ -35,7 +43,6 @@
 - (void)executeCommand:(NSString *)className
             methodName:(NSString *)methodName
             parameters:(NSDictionary *)parameters {
-
     NSLog(@"executeCommand className: %@, methodName: %@, parameters: %@", className, methodName, parameters);
 
     if ([methodName isEqualToString:@"factory"]) {
@@ -82,6 +89,7 @@
         [self testEnd:parameters];
     }
 }
+
 - (void)factory:(NSDictionary *)parameters {
     if ([parameters objectForKey:@"basePath"]) {
         self.basePath = [parameters objectForKey:@"basePath"][0];
@@ -157,8 +165,7 @@
             [appSecretList[1] length] > 0 &&
             [appSecretList[2] length] > 0 &&
             [appSecretList[3] length] > 0 &&
-            [appSecretList[4] length] > 0)
-        {
+            [appSecretList[4] length] > 0) {
             NSUInteger secretId = [appSecretList[0] integerValue];
             NSUInteger part1 = [appSecretList[1] integerValue];
             NSUInteger part2 = [appSecretList[2] integerValue];
@@ -195,20 +202,64 @@
         [adjustConfig setUserAgent:userAgent];
     }
 
+    /*
     self.adjustDelegate = [[ATAAdjustDelegate alloc] initWithTestLibrary:self.testLibrary];
-    BOOL delegateSet = NO;
+    BOOL swizzleAttributionCallback = NO;
+    BOOL swizzleSessionSuccessCallback = NO;
+    BOOL swizzleSessionFailureCallback = NO;
+    BOOL swizzleEventSuccessCallback = NO;
+    BOOL swizzleEventFailureCallback = NO;
+     */
 
     if ([parameters objectForKey:@"attributionCallbackSendAll"]) {
         NSLog(@"attributionCallbackSendAll detected");
+        
+        self.adjustDelegate = [[ATAAdjustDelegateAttribution alloc] initWithTestLibrary:self.testLibrary];
 
-        [self.adjustDelegate swizzleCallbackMethod:@selector(adjustAttributionChanged:)
-                             swizzledSelector:@selector(attributionCallbackSendAll:)];
-        delegateSet = YES;
+        // swizzleAttributionCallback = YES;
+    }
+    
+    if ([parameters objectForKey:@"sessionCallbackSendSuccess"]) {
+        NSLog(@"sessionCallbackSendSuccess detected");
+        
+        self.adjustDelegate = [[ATAAdjustDelegateSessionSuccess alloc] initWithTestLibrary:self.testLibrary];
+        
+        // swizzleSessionSuccessCallback = YES;
+    }
+    
+    if ([parameters objectForKey:@"sessionCallbackSendFailure"]) {
+        NSLog(@"sessionCallbackSendFailure detected");
+        
+        self.adjustDelegate = [[ATAAdjustDelegateSessionFailure alloc] initWithTestLibrary:self.testLibrary];
+        
+        // swizzleSessionFailureCallback = YES;
+    }
+    
+    if ([parameters objectForKey:@"eventCallbackSendSuccess"]) {
+        NSLog(@"eventCallbackSendSuccess detected");
+        
+        self.adjustDelegate = [[ATAAdjustDelegateEventSuccess alloc] initWithTestLibrary:self.testLibrary];
+        
+        // swizzleEventSuccessCallback = YES;
+    }
+    
+    if ([parameters objectForKey:@"eventCallbackSendFailure"]) {
+        NSLog(@"eventCallbackSendFailure detected");
+        
+        self.adjustDelegate = [[ATAAdjustDelegateEventFailure alloc] initWithTestLibrary:self.testLibrary];
+        
+        // swizzleEventFailureCallback = YES;
     }
 
-    if (delegateSet) {
-        [adjustConfig setDelegate:self.adjustDelegate];
-    }
+    /*
+    [self.adjustDelegate swizzleAttributionCallback:swizzleAttributionCallback
+                             eventSucceededCallback:swizzleEventSuccessCallback
+                                eventFailedCallback:swizzleEventFailureCallback
+                           sessionSucceededCallback:swizzleSessionSuccessCallback
+                              sessionFailedCallback:swizzleSessionFailureCallback];
+    [adjustConfig setDelegate:self.adjustDelegate];
+     */
+    [adjustConfig setDelegate:self.adjustDelegate];
 }
 
 - (void)start:(NSDictionary *)parameters {
@@ -396,6 +447,9 @@
 }
 
 - (void)testEnd:(NSDictionary *)parameters {
+    self.adjustDelegate = nil;
+
     [ADJAdjustFactory teardown:YES];
 }
+
 @end

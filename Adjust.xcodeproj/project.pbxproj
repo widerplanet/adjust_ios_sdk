@@ -750,13 +750,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6F44ED5F1EA6432E0081B510 /* AdjustCI */ = {
+		6F44ED5F1EA6432E0081B510 /* AdjustTestApp */ = {
 			isa = PBXGroup;
 			children = (
 				6F068BA81F4DAB4F00B60A4C /* AdjustTestApp.xcodeproj */,
 				6F44ED9D1EA6497D0081B510 /* AdjustTestLibrary.xcodeproj */,
 			);
-			path = AdjustCI;
+			path = AdjustTestApp;
 			sourceTree = "<group>";
 		};
 		6F44ED9E1EA6497D0081B510 /* Products */ = {
@@ -800,12 +800,12 @@
 		9679920418BBAE2800394606 = {
 			isa = PBXGroup;
 			children = (
-				6F44ED5F1EA6432E0081B510 /* AdjustCI */,
 				96E5E34B18BBB48A008E7B30 /* Adjust */,
 				9DFA37AE1C0F219400782607 /* AdjustSdk */,
 				9648C5E41CD1765E00A3B049 /* AdjustBridge */,
 				9DFB06111D747070006D48FC /* AdjustSdkTv */,
 				96E5E39A18BBB49E008E7B30 /* AdjustTests */,
+				6F44ED5F1EA6432E0081B510 /* AdjustTestApp */,
 				9D449DAC1E6ED20400E7E80B /* Example Apps */,
 				9679920F18BBAE2800394606 /* Frameworks */,
 				9679920E18BBAE2800394606 /* Products */,
@@ -1477,7 +1477,7 @@
 		9679920518BBAE2800394606 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "adjust GmbH";
 				TargetAttributes = {
 					9615158E1CD2CB2C0022D336 = {

@@ -56,6 +56,11 @@
 		6F227C261FA1DE0B007591C7 /* ATAAdjustDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F227C251FA1DE0B007591C7 /* ATAAdjustDelegate.m */; };
 		6F8E3B3C1F863AFC00718E7C /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E3B3A1F863AFC00718E7C /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6F8E3B3D1F863AFC00718E7C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F8E3B3B1F863AFC00718E7C /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9DB633461FDB3679007C4360 /* ATAAdjustDelegateAttribution.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB633451FDB3679007C4360 /* ATAAdjustDelegateAttribution.m */; };
+		9DB633551FDB3E24007C4360 /* ATAAdjustDelegateEventSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6334D1FDB3E23007C4360 /* ATAAdjustDelegateEventSuccess.m */; };
+		9DB633561FDB3E24007C4360 /* ATAAdjustDelegateSessionFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6334E1FDB3E24007C4360 /* ATAAdjustDelegateSessionFailure.m */; };
+		9DB633571FDB3E24007C4360 /* ATAAdjustDelegateEventFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB6334F1FDB3E24007C4360 /* ATAAdjustDelegateEventFailure.m */; };
+		9DB6335B1FDB3EFE007C4360 /* ATAAdjustDelegateSessionSuccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB633591FDB3EFE007C4360 /* ATAAdjustDelegateSessionSuccess.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +160,16 @@
 		6F227C251FA1DE0B007591C7 /* ATAAdjustDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustDelegate.m; sourceTree = "<group>"; };
 		6F8E3B3A1F863AFC00718E7C /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		6F8E3B3B1F863AFC00718E7C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		9DB633441FDB3679007C4360 /* ATAAdjustDelegateAttribution.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAAdjustDelegateAttribution.h; sourceTree = "<group>"; };
+		9DB633451FDB3679007C4360 /* ATAAdjustDelegateAttribution.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustDelegateAttribution.m; sourceTree = "<group>"; };
+		9DB6334D1FDB3E23007C4360 /* ATAAdjustDelegateEventSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustDelegateEventSuccess.m; sourceTree = "<group>"; };
+		9DB6334E1FDB3E24007C4360 /* ATAAdjustDelegateSessionFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustDelegateSessionFailure.m; sourceTree = "<group>"; };
+		9DB6334F1FDB3E24007C4360 /* ATAAdjustDelegateEventFailure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustDelegateEventFailure.m; sourceTree = "<group>"; };
+		9DB633521FDB3E24007C4360 /* ATAAdjustDelegateSessionFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAAdjustDelegateSessionFailure.h; sourceTree = "<group>"; };
+		9DB633531FDB3E24007C4360 /* ATAAdjustDelegateEventSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAAdjustDelegateEventSuccess.h; sourceTree = "<group>"; };
+		9DB633541FDB3E24007C4360 /* ATAAdjustDelegateEventFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAAdjustDelegateEventFailure.h; sourceTree = "<group>"; };
+		9DB633591FDB3EFE007C4360 /* ATAAdjustDelegateSessionSuccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ATAAdjustDelegateSessionSuccess.m; sourceTree = "<group>"; };
+		9DB6335A1FDB3EFE007C4360 /* ATAAdjustDelegateSessionSuccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATAAdjustDelegateSessionSuccess.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,21 +205,20 @@
 		6F068B911F4DAB4F00B60A4C /* AdjustTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				6F068BB61F4DAB8E00B60A4C /* Adjust */,
+				6F068C281F4DC25600B60A4C /* AdjustTestLibrary */,
+				9DB633431FDB3644007C4360 /* Adjust Delegates */,
 				6F068B921F4DAB4F00B60A4C /* AppDelegate.h */,
 				6F068B931F4DAB4F00B60A4C /* AppDelegate.m */,
 				6F068B951F4DAB4F00B60A4C /* ViewController.h */,
 				6F068B961F4DAB4F00B60A4C /* ViewController.m */,
+				6F068C391F4DC57100B60A4C /* ATAAdjustCommandExecutor.h */,
+				6F068C3A1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m */,
 				6F068B981F4DAB4F00B60A4C /* Main.storyboard */,
 				6F068B9B1F4DAB4F00B60A4C /* Assets.xcassets */,
 				6F068B9D1F4DAB4F00B60A4C /* LaunchScreen.storyboard */,
 				6F068BA01F4DAB4F00B60A4C /* Info.plist */,
 				6F068BA11F4DAB4F00B60A4C /* main.m */,
-				6F068C281F4DC25600B60A4C /* AdjustTestLibrary */,
-				6F068BB61F4DAB8E00B60A4C /* Adjust */,
-				6F068C391F4DC57100B60A4C /* ATAAdjustCommandExecutor.h */,
-				6F068C3A1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m */,
-				6F227C241FA1DE0B007591C7 /* ATAAdjustDelegate.h */,
-				6F227C251FA1DE0B007591C7 /* ATAAdjustDelegate.m */,
 			);
 			path = AdjustTestApp;
 			sourceTree = "<group>";
@@ -212,6 +226,7 @@
 		6F068BB61F4DAB8E00B60A4C /* Adjust */ = {
 			isa = PBXGroup;
 			children = (
+				6F068BBF1F4DAB8E00B60A4C /* ADJAdditions */,
 				6F068BB71F4DAB8E00B60A4C /* ADJActivityHandler.h */,
 				6F068BB81F4DAB8E00B60A4C /* ADJActivityHandler.m */,
 				6F068BB91F4DAB8E00B60A4C /* ADJActivityKind.h */,
@@ -220,7 +235,6 @@
 				6F068BBC1F4DAB8E00B60A4C /* ADJActivityPackage.m */,
 				6F068BBD1F4DAB8E00B60A4C /* ADJActivityState.h */,
 				6F068BBE1F4DAB8E00B60A4C /* ADJActivityState.m */,
-				6F068BBF1F4DAB8E00B60A4C /* ADJAdditions */,
 				6F068BC61F4DAB8E00B60A4C /* ADJAdjustFactory.h */,
 				6F068BC71F4DAB8E00B60A4C /* ADJAdjustFactory.m */,
 				6F068BC81F4DAB8E00B60A4C /* ADJAttribution.h */,
@@ -322,6 +336,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9DB633431FDB3644007C4360 /* Adjust Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				6F227C241FA1DE0B007591C7 /* ATAAdjustDelegate.h */,
+				6F227C251FA1DE0B007591C7 /* ATAAdjustDelegate.m */,
+				9DB633441FDB3679007C4360 /* ATAAdjustDelegateAttribution.h */,
+				9DB633451FDB3679007C4360 /* ATAAdjustDelegateAttribution.m */,
+				9DB633541FDB3E24007C4360 /* ATAAdjustDelegateEventFailure.h */,
+				9DB6334F1FDB3E24007C4360 /* ATAAdjustDelegateEventFailure.m */,
+				9DB633531FDB3E24007C4360 /* ATAAdjustDelegateEventSuccess.h */,
+				9DB6334D1FDB3E23007C4360 /* ATAAdjustDelegateEventSuccess.m */,
+				9DB633521FDB3E24007C4360 /* ATAAdjustDelegateSessionFailure.h */,
+				9DB6334E1FDB3E24007C4360 /* ATAAdjustDelegateSessionFailure.m */,
+				9DB6335A1FDB3EFE007C4360 /* ATAAdjustDelegateSessionSuccess.h */,
+				9DB633591FDB3EFE007C4360 /* ATAAdjustDelegateSessionSuccess.m */,
+			);
+			path = "Adjust Delegates";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -392,6 +425,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DB633571FDB3E24007C4360 /* ATAAdjustDelegateEventFailure.m in Sources */,
+				9DB633461FDB3679007C4360 /* ATAAdjustDelegateAttribution.m in Sources */,
 				6F068C3B1F4DC57100B60A4C /* ATAAdjustCommandExecutor.m in Sources */,
 				6F068C341F4DC27600B60A4C /* ATLControlChannel.m in Sources */,
 				6F068C351F4DC27600B60A4C /* ATLTestLibrary.m in Sources */,
@@ -407,7 +442,9 @@
 				6F068C011F4DAC5A00B60A4C /* UIDevice+ADJAdditions.m in Sources */,
 				6F068C021F4DAC5A00B60A4C /* ADJAdjustFactory.m in Sources */,
 				6F068C031F4DAC5A00B60A4C /* ADJAttribution.m in Sources */,
+				9DB6335B1FDB3EFE007C4360 /* ATAAdjustDelegateSessionSuccess.m in Sources */,
 				6F068C041F4DAC5A00B60A4C /* ADJAttributionHandler.m in Sources */,
+				9DB633551FDB3E24007C4360 /* ATAAdjustDelegateEventSuccess.m in Sources */,
 				6F068C051F4DAC5A00B60A4C /* ADJBackoffStrategy.m in Sources */,
 				6F068C061F4DAC5A00B60A4C /* ADJConfig.m in Sources */,
 				6F068C071F4DAC5A00B60A4C /* ADJDeviceInfo.m in Sources */,
@@ -422,6 +459,7 @@
 				6F068C101F4DAC5A00B60A4C /* ADJRequestHandler.m in Sources */,
 				6F068C111F4DAC5A00B60A4C /* ADJResponseData.m in Sources */,
 				6F1621D51FAA30C400F02196 /* ATLTestInfo.m in Sources */,
+				9DB633561FDB3E24007C4360 /* ATAAdjustDelegateSessionFailure.m in Sources */,
 				6F068C121F4DAC5A00B60A4C /* ADJSdkClickHandler.m in Sources */,
 				6F227C261FA1DE0B007591C7 /* ATAAdjustDelegate.m in Sources */,
 				6F068C131F4DAC5A00B60A4C /* ADJSessionFailure.m in Sources */,
