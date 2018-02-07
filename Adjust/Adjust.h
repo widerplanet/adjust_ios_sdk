@@ -11,6 +11,19 @@
 #import "ADJConfig.h"
 #import "ADJAttribution.h"
 
+@interface AdjustTestOptions : NSObject
+
+@property (nonatomic, copy, nullable) NSString *baseUrl;
+@property (nonatomic, copy, nullable) NSString *basePath;
+@property (nonatomic, copy, nullable) NSNumber *timerIntervalInMilliseconds;
+@property (nonatomic, copy, nullable) NSNumber *timerStartInMilliseconds;
+@property (nonatomic, copy, nullable) NSNumber *sessionIntervalInMilliseconds;
+@property (nonatomic, copy, nullable) NSNumber *subsessionIntervalInMilliseconds;
+@property (nonatomic, assign) BOOL teardown;
+@property (nonatomic, assign) BOOL deleteState;
+
+@end
+
 /**
  * Constants for our supported tracking environments
  */
@@ -197,6 +210,7 @@ extern NSString * __nonnull const ADJEnvironmentProduction;
  */
 + (nullable id)getInstance;
 
++ (void)setTestOptions:(nullable AdjustTestOptions *)testOptions;
 
 - (void)appDidLaunch:(nullable ADJConfig *)adjustConfig;
 
@@ -204,7 +218,7 @@ extern NSString * __nonnull const ADJEnvironmentProduction;
 
 - (void)setEnabled:(BOOL)enabled;
 
-- (void)teardown:(BOOL)deleteState;
+- (void)teardown;
 
 - (void)appWillOpenUrl:(nonnull NSURL *)url;
 
