@@ -26,11 +26,11 @@
 
 @interface ADJWiderPlanet : NSObject
 
-+ (void)injectPartnerIdIntoWiderPlanetEvents:(nullable NSString *)client_id;
++ (void)injectClientIdIntoWiderPlanetEvents:(nullable NSString *)client_id;
 
 + (void)injectCustomerIdIntoWiderPlanetEvents:(nullable NSString *)customerId;
 
-+ (void)injectHashedEmailIntoWiderPlanetEvents:(nullable NSString *)hashUserId;
++ (void)injectHashedUserIDIntoWiderPlanetEvents:(nullable NSString *)hashUserId;
 
 + (void)injectHashedEmailIntoWiderPlanetEvents:(nullable NSString *)hashEmail;
 

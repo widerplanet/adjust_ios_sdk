@@ -36,10 +36,10 @@ static const NSUInteger MAX_VIEW_LISTING_PRODUCTS = 10;
 
 @implementation ADJWiderPlanet
 
+static NSString * clientIDInternal;
+static NSString * customerIDInternal;
+static NSString * hashUserIDInternal;
 static NSString * hashEmailInternal;
-static NSString * client_idInternal;
-static NSString * hashUIDInternal;
-static NSString * customerIdInternal;
 static NSString * userSegmentInternal;
 static NSString * checkInDateInternal;
 static NSString * checkOutDateInternal;
@@ -132,17 +132,24 @@ static NSString * checkOutDateInternal;
     [ADJWiderPlanet injectOptionalParams:event];
 }
 
+
++ (void)injectHashedUserIDIntoWiderPlanetEvents:(NSString *)hashUserId {
+    hashUserIDInternal = hashUserId;
+}
+
+
 + (void)injectHashedEmailIntoWiderPlanetEvents:(NSString *)hashEmail {
     hashEmailInternal = hashEmail;
 }
 
++ (void)injectClientIdIntoWiderPlanetEvents:(NSString *)client_id {
+    clientIDInternal = client_id;
+}
+
+
 + (void)injectViewSearchDatesIntoWiderPlanetEvents:(NSString *)checkInDate checkOutDate:(NSString *)checkOutDate {
     checkInDateInternal = checkInDate;
     checkOutDateInternal = checkOutDate;
-}
-
-+ (void)injectClientIdIntoWiderPlanetEvents:(NSString *)client_id {
-    client_idInternal = client_id;
 }
 
 + (void)injectUserSegmentIntoWiderPlanetEvents:(NSString *)userSegment {
@@ -150,22 +157,49 @@ static NSString * checkOutDateInternal;
 }
 
 + (void)injectCustomerIdIntoWiderPlanetEvents:(NSString *)customerId {
-    customerIdInternal = customerId;
+    customerIDInternal = customerId;
 }
 
 + (void)injectOptionalParams:(ADJEvent *)event {
-    [ADJWiderPlanet injectHashEmail:event];
-    [ADJWiderPlanet injectSearchDates:event];
     [ADJWiderPlanet injectClientId:event];
     [ADJWiderPlanet injectCustomerId:event];
+    [ADJWiderPlanet injectHashedUserID:event];
+    [ADJWiderPlanet injectHashedEmail:event];
+    [ADJWiderPlanet injectSearchDates:event];
 }
 
-+ (void)injectHashEmail:(ADJEvent *)event {
-    if (hashEmailInternal == nil) {
+
++ (void)injectClientId:(ADJEvent *)event {
+    if (clientIDInternal == nil) {
+        return;
+    }
+    
+    [event addPartnerParameter:@"client_id" value:clientIDInternal];
+}
+
++ (void)injectCustomerId:(ADJEvent *)event {
+    if (customerIDInternal == nil) {
+        return;
+    }
+    
+    [event addPartnerParameter:@"customer_id" value:customerIDInternal];
+}
+
++ (void)injectHashedUserID:(ADJEvent *)event {
+    if (hashUserIDInternal == nil) {
         return;
     }
 
-    [event addPartnerParameter:@"hcuid" value:hashEmailInternal];
+    [event addPartnerParameter:@"hcuid" value:hashUserIDInternal];
+}
+
+
++ (void)injectHashedEmail:(ADJEvent *)event {
+    if (hashEmailInternal == nil) {
+        return;
+    }
+    
+    [event addPartnerParameter:@"hceid" value:hashEmailInternal];
 }
 
 + (void)injectSearchDates:(ADJEvent *)event {
@@ -177,22 +211,6 @@ static NSString * checkOutDateInternal;
     [event addPartnerParameter:@"dout" value:checkOutDateInternal];
 }
 
-+ (void)injectClientId:(ADJEvent *)event {
-    if (client_idInternal == nil) {
-        return;
-    }
-
-    [event addPartnerParameter:@"client_id" value:client_idInternal];
-}
-
-
-+ (void)injectCustomerId:(ADJEvent *)event {
-    if (customerIdInternal == nil) {
-        return;
-    }
-
-    [event addPartnerParameter:@"customer_id" value:customerIdInternal];
-}
 
 + (NSString *)createWiderPlanetVBFromProducts:(NSArray *)products {
     if (products == nil) {
